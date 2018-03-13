@@ -1,224 +1,337 @@
  <!DOCTYPE html>
  <html>
    <head>
+
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     
+
      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/css/uikit.min.css" />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" />
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/js/uikit.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/js/uikit-icons.min.js"></script>
-     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
      <script>hljs.initHighlightingOnLoad();</script>
+
+     
+
+     <style>
+       
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+     </style>
+
    </head>
-  <body class="uk-background-muted">
+
+  <body>
     
+
   
-  <div class="uk-background-muted uk-flex uk-flex-center uk-flex-middle uk-text-center uk-padding-small" uk-grid>
+<header class="ui center aligned middle aligned stackable grid segment">
+
+  
     
-  <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small">
+  <a class="ui blue left corner label">
+    <div id="showTOC" class="popup" data-content="Reveal TOC">
+      <i id="toc" class="sitemap big  icon"></i>
+    </div>
+  </a>
+
+  
+
+  <div class="two wide column">
+    <i class="huge  icon"></i></a>
+  </div>
+
+
+  <div class="ui six wide column">
     <h2> Enterprise Web Development  </h2>
-    <div class="uk-text-muted uk-text-small">
-      
-        Frank Walsh (fxwalsh@wit.ie)
-      
+    <div class="ui tiny blue label">
+      Frank Walsh (fxwalsh@wit.ie)
     </div>
   </div>
 
-    
-  <div class="uk-padding">
+  <div class="ui two wide column">
     
   </div>
 
-    
-  
 
     
   
-    <div class="uk-card uk-card-default uk-padding-small">
-      <ul class="uk-iconnav">
-        
+
+
+
+  <div class="three wide column">
+    
+      
+  <div class="ui equal width center aligned grid segment">
+    
+      
+        <div class="column">
           
-  
-    
-      
-      
-  <li>
-    <a href="./talkwall.html"
-       title="All slides's in module" pos="bottom" uk-tooltip>
-      <i class="fas fa-object-group   fa-2x" style="color:#009688""></i>
-    </a>
-  </li>
-
-    
-  
-    
-      
-      
-  <li>
-    <a href="./labwall.html"
-       title="All labs's in module" pos="bottom" uk-tooltip>
-      <i class="fas fa-flask          fa-2x" style="color:#00BCD4""></i>
-    </a>
-  </li>
-
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-
-        
-        
-      </ul>
-    </div>
-  
-
-  </div>
-
-  
-  <div class="uk-container uk-padding-small">
-    
-      
-    
-      
-    
-    <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
-      
-        
-          <div>
+          
+          
             
-              
-  <div class="uk-card uk-card-default 
-  
-    uk-card-hover
-  
- uk-card-small uk-text-center uk-animation-scale-up">
-    
-  
-    
-      
-      
-    
-    <a href=./topic01/index.html>
-  
-
-    
-  <div class="uk-card-header">
-    <div uk-grid>
-      <div class="uk-width-expand@m">
-        <h3> Introduction to HTML, CSS and Bootstrap </h3>
-      </div>
-      <div class="uk-width-1-4@m">
-        <i class=" fas fa-sitemap        fa-2x" style="color:#009688" > </i>
-      </div>
-    </div>
-  </div>
-
-    
-  
-
-    
-  <div class="uk-card-body">
-    
-      <img src="./topic01/topic.png">
-    
-  </div>
-
-    
-  
-    </a>
-  
-
-    
-  
-    <div class="uk-card-footer">
-      <p> <p>This topic provides a introduction to key front end web technologies required for this module</p>
-</p>
-    </div>
-  
-
-    
-  
-
-  </div>
-
-            
+          
+          <div class="popup" data-content="All slide's in module">
+            <a href="talkwall.html"> <i class="big object group icon"></i> </a>
+            <div class="ui blue mini circular label">
+              5
+            </div>
           </div>
-        
-      
-        
-          <div>
-            
-              
-  <div class="uk-card uk-card-default 
-  
-    uk-card-hover
-  
- uk-card-small uk-text-center uk-animation-scale-up">
-    
-  
-    
-      
+        </div>
       
     
-    <a href=./topic02/index.html>
-  
-
-    
-  <div class="uk-card-header">
-    <div uk-grid>
-      <div class="uk-width-expand@m">
-        <h3> Introduction to Promises, Remote Repos and Node.js </h3>
-      </div>
-      <div class="uk-width-1-4@m">
-        <i class=" fas fa-sitemap        fa-2x" style="color:#009688" > </i>
-      </div>
-    </div>
-  </div>
-
-    
-  
-
-    
-  <div class="uk-card-body">
-    
-      <img src="./topic02/topic.png">
-    
-  </div>
-
-    
-  
-    </a>
-  
-
-    
-  
-    <div class="uk-card-footer">
-      <p> <p>This topic introduces Promises, remote repository management using git, and Node.js to create server-side web APIs.</p>
-</p>
-    </div>
-  
-
-    
-  
-
-  </div>
-
-            
+      
+        <div class="column">
+          
+          
+          
+          <div class="popup" data-content="All lab's in module">
+            <a href="labwall.html"> <i class="big lab icon"></i> </a>
+            <div class="ui blue mini circular label">
+              2
+            </div>
           </div>
-        
+        </div>
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+
+    
+    
+  </div>
+
+</header>
+
+  
+
+
+
+  <div class="ui pushable">
+    <div class="ui inverted inline vertical sidebar menu">
+      
+        <div class="header">
+          <a class="item" href="topic01/index.html">
+            Introduction to HTML, CSS and Bootstrap 
+          </a>
+        </div>
+        <div class="menu">
+          
+            <div class="menu">
+              <a class="item" href="topic01/talk-1/ES2015.pdf">
+                 ECMA2015 </a>
+            </div>
+          
+            <div class="menu">
+              <a class="item" href="topic01/talk-2/html5.pdf">
+                CSS and Bootstrap </a>
+            </div>
+          
+            <div class="menu">
+              <a class="item" href="topic01/book-1/index.html">
+                Lab-HTML</a>
+            </div>
+          
+        </div>
+      
+        <div class="header">
+          <a class="item" href="topic02/index.html">
+            Introduction to Promises, Remote Repos and Node.js 
+          </a>
+        </div>
+        <div class="menu">
+          
+            <div class="menu">
+              <a class="item" href="topic02/talk-1/git.pdf">
+                Git Overview </a>
+            </div>
+          
+            <div class="menu">
+              <a class="item" href="topic02/talk-2/promises.pdf">
+                 Promises </a>
+            </div>
+          
+            <div class="menu">
+              <a class="item" href="topic02/talk-3/node.pdf">
+                Node </a>
+            </div>
+          
+            <div class="menu">
+              <a class="item" href="topic02/book-1/index.html">
+                node_lab1</a>
+            </div>
+          
+        </div>
+      
+    </div>
+    <div class="pusher">
+      <div class="ui raised stackable segment container">
+        <div class="ui blue left ribbon large label"> Topics</div>
+        <div class="ui centered four doubling stackable cards">
+          
+            
+
+<div class="ui  raised link  card">
+
+
+  <div class="center aligned content">
+    <div class="right floated meta"><i class="huge  sitemap 
+    icon"></i></div>
+    <div class="header"> Introduction to HTML, CSS and Bootstrap </div>
+
+  </div>
+
+  <a href=
+  
+    "topic01/index.html">
+  
+
+    
+      <div class="image">
+        <img class="ui bordered rounded image" src="topic01/topic.png">
+      </div>
+    
+    </a>
+
+    <div class="center aligned content">
+      <div class="description">
+        <p>This topic provides a introduction to key front end web technologies required for this module</p>
+
+      </div>
+    </div>
+    
+
+    
+
+    
+
+    </div>
+    
+          
+            
+
+<div class="ui  raised link  card">
+
+
+  <div class="center aligned content">
+    <div class="right floated meta"><i class="huge  sitemap 
+    icon"></i></div>
+    <div class="header"> Introduction to Promises, Remote Repos and Node.js </div>
+
+  </div>
+
+  <a href=
+  
+    "topic02/index.html">
+  
+
+    
+      <div class="image">
+        <img class="ui bordered rounded image" src="topic02/topic.png">
+      </div>
+    
+    </a>
+
+    <div class="center aligned content">
+      <div class="description">
+        <p>This topic introduces Promises, remote repository management using git, and Node.js to create server-side web APIs.</p>
+
+      </div>
+    </div>
+    
+
+    
+
+    
+
+    </div>
+    
+          
+        </div>
+      </div>
     </div>
   </div>
 
 
+    <!--<footer>-->
+
+    <!--</footer>-->
+    <script>
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
   </body>
+
  </html>
