@@ -1,0 +1,455 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     
+
+     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+     
+
+     <style>
+       
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+     </style>
+
+   </head>
+
+  <body>
+    
+
+<style>
+  
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom:thin solid black;
+}
+
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+body
+{
+  overflow-y: scroll;
+}
+
+.pushable > .pusher
+{
+  padding-bottom: 1.5rem;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+</style>
+
+<div class="ui fixed top pointing inverted stackable menu labmenu">
+  <header class="header item">
+    <i id="toc" class="sitemap icon"></i>
+    <a href="../index.html">
+       Unit Testing APIs 
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    
+    <a class="item" data-tab="api-testing-ES6">
+      api-testing-ES6
+    </a>
+    
+    <a class="item" data-tab="01">
+      01
+    </a>
+    
+    <a class="item" data-tab="02">
+      02
+    </a>
+    
+    <a class="item" data-tab="03">
+      03
+    </a>
+    
+    <div class="item">
+      
+    </div>
+  </div>
+</div>
+
+<div class="ui segment pushable">
+  <div class="ui inverted labeled icon left inline vertical sidebar menu">
+    <br><br>
+    
+      
+        <a class="item" href="../../topic01/book-1/index.html">
+          Lab-HTML
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic02/book-1/index.html">
+          node_lab1
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic03/book-1/index.html">
+          node_lab2
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic03/book-2/index.html">
+          node-lab3
+        </a>
+      
+    
+      
+        <a class="active item" href="../../topic04/book-1/index.html">
+          api-testing-ES6
+        </a>
+      
+    
+  </div>
+  <div class="pusher" tabindex="-1">
+    <div class="ui basic segment" id="labchat">
+      <br>
+      
+      <div  class="ui tab segment lab" data-tab="api-testing-ES6">
+        <h1>API Testing Lab</h1>
+<p>This lab shows you how to test a Node API using Mocha, Should, and SuperTest.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="01">
+        <h1>Set up</h1>
+<ul>
+<li><p>You need a working version of the Contacts api for this lab. The solution to the last lab you completed will will do. Otherwise, you can get the solution from Github.</p>
+</li>
+<li><p>Create a new folder for this lab,<em>node-lab4</em>, and copy the contents of the last lab into this folder. Update the <em>name</em> and <em>description</em> properties in <strong>package.json</strong> to <em>node-lab4</em>.</p>
+</li>
+</ul>
+<h3>Install dependencies</h3>
+<p>All the following are development dependencies and as such use the <code>--save-dev</code> option for installation.</p>
+<ul>
+<li><p>You need <strong>Mocha, Should and SuperTest</strong>. Install as development dependencies into your new lab folder as follows.</p>
+<pre><code>npm install --save-dev mocha
+npm install --save-dev should
+npm install --save-dev supertest</code></pre>
+</li>
+<li><p>You need <strong>babel-core</strong> and <strong>babel-polyfill</strong>. As we are writing code using ES6, we need to be able to transpile our unit tests using Babel. We can use the existing Babel configuration  for the lab but we need to add <em>babel-core</em> and <em>babel-polyfill</em>. Install both as a dev dependency.</p>
+<pre><code>npm install --save-dev babel-core
+npm install --save-dev babel-polyfill</code></pre>
+</li>
+<li><p>You need <strong>Cross-Env</strong>. <code>NODE_ENV</code> is an environment variable. <code>NODE_ENV</code> value is set to ‘test’ when we run our tests. We will also need to revert to &#39;development&#39; when we&#39;re updating the code. Setting environment variables differs across Operating Systems/platforms. We also want to be able to set the value from a scipt. <em>Cross-Env</em> is an NPM package which uses a single command to set environment variables without worrying about the platform. Install <em>Cross-Env</em> as a development dependency:</p>
+<pre><code>npm install save-dev cross-env</code></pre>
+</li>
+</ul>
+<h3>Create your first test</h3>
+<ul>
+<li>To enable us to test the app, we need to export the app object from <em>index.js</em> in the base folder of the project. Modify the <em>index.js</em> as follows:<pre><code class="lang-javascript">...
+export const app = express(); //replaces the previous const app = express();
+...</code></pre>
+</li>
+<li>Create  new folder called <em>test</em> in the root folder of the lab. Create a new file called <code>/test/testContactsApi.js</code> with the following content.<pre><code class="lang-javascript">import supertest from &#39;supertest&#39;;
+import {app} from &#39;./../index.js&#39;;
+import should from &#39;should&#39;; // eslint-disable-line
+// UNIT test begin
+describe(&#39;Contacts API unit test&#39;, function() {
+this.timeout(120000); // eslint-disable-line
+// #1 return a collection of json documents
+it(&#39;should return collection of JSON documents&#39;, function(done) {
+  // calling home page api
+  supertest(app)
+  .get(&#39;/api/contacts&#39;)
+  .expect(&#39;Content-type&#39;, /json/)
+  .expect(200) // This is the HTTP response
+  .end(function(err, res) {
+      // HTTP status should be 200
+      res.status.should.equal(200);
+      done();
+  });
+});
+});</code></pre>
+</li>
+</ul>
+<h2>Update package.json</h2>
+<ul>
+<li><p>Replace the <em>scripts</em> entry in the <em>package.json</em> file with the following.</p>
+<pre><code class="lang-json">&quot;scripts&quot;: {
+ &quot;start&quot;: &quot;cross-env NODE_ENV=development nodemon --ignore hackerNews/* --exec babel-node index.js&quot;,
+ &quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --require babel-core/register --require babel-polyfill --reporter mochawesome --exit&quot;,
+ &quot;pretest&quot;: &quot;eslint *.js ./api/*.js ./test/*.js&quot;
+}</code></pre>
+<p>The above script entry for test will set <code>NODE_ENV</code> to test and then run mocha against the files matching the pattern provided (i.e. by default it&#39;ll pick up the test in the test folder). You also need to update the start script to set <code>NODE_ENV</code> to &#39;development&#39; before starting the server.
+<strong>The pretest script is optional</strong>. If you are linting, it might be a good idea to include a &quot;full lint&quot; before each test. When you run the test script, the pretest will be run automatically.</p>
+</li>
+<li><p>Now test by running the test script:</p>
+<pre><code>npm run test</code></pre>
+<p>You should see something similar to the following:
+<img src="./img/main.png" alt="First Mocha Test"></p>
+</li>
+</ul>
+<h2>Include Mockgoose</h2>
+<p>The current test is an integration test as it requires a real, functioning database. If we want our tests to just apply to the service interface then we should remove the depenency on the database. <strong>Mockgoose</strong> will allow us to test the code in isolation from the database</p>
+<ul>
+<li><p>Install Mockgoose as a development dependency</p>
+<pre><code>npm install --save-dev mockgoose</code></pre>
+</li>
+<li><p>In our current solution, we connect to the database with the following statement:</p>
+<pre><code class="lang-javascript">...
+mongoose.connect(process.env.mongoDB);
+...</code></pre>
+</li>
+<li>Replace this statement in <em>index.js</em>  with the following code:</li>
+</ul>
+<pre><code class="lang-javascript">import {Mockgoose} from &#39;mockgoose&#39;;
+...
+// Connect to database
+if (nodeEnv == &#39;test&#39;) {
+  // use mockgoose for testing
+  const mockgoose=new Mockgoose(mongoose);
+  mockgoose.prepareStorage().then(()=&gt;{
+    mongoose.connect(process.env.mongoDB);
+  });
+} else {
+  // use real deal for everything else
+  mongoose.connect(process.env.mongoDB);
+}
+
+mongoose.connection.on(&#39;error&#39;, (err) =&gt; {
+    console.error(&#39;MongoDB connection error: &#39;+ err);
+    process.exit(-1);
+});
+...</code></pre>
+<p>This code will wrap the existing Mongoose object with Mockgoose only if the <code>NODE_ENV</code> is set to test (i.e. we&#39;re running test cases).</p>
+<ul>
+<li>Now test again by running the test script:<pre><code>npm run test</code></pre>
+This time the first test run  will take longer as Mockgoose will create a local Mongodb in memory for the test. Subsequent tests will be faster though
+<img src="./img/main.png" alt="First Mocha Test"></li>
+</ul>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="02">
+        <h1>Testing the Contacts API</h1>
+<p>Now lets try to test the add contact function of the API.</p>
+<ul>
+<li>Add another unit test to the last test. This time we&#39;ll use SuperTest to post a new contact and test for the correct status:<pre><code class="lang-javascript">// #2 add a contact
+it(&#39;should add a contact&#39;, function(done) {
+// post to /api/contacts
+supertest(app)
+.post(&#39;/api/contacts&#39;)
+.send({name: &#39;Contact 99&#39;, address: &#39;123 Strand St&#39;})
+.expect(&#39;Content-type&#39;, /json/)
+.expect(201)
+.end(function(err, res) {
+  res.status.should.equal(201);
+  res.body.should.have.property(&#39;_id&#39;);
+  res.body.name.should.equal(&#39;Contact 99&#39;);
+  done();
+});
+});</code></pre>
+Now run the test again <code>npm run test</code>. You should see something similar to the following:
+<img src="./img/add_contact.png" alt="Add a contact test"></li>
+</ul>
+<h2>Delete a Contact</h2>
+<p>For this test, you will delete the first contact in the list returned from the API:</p>
+<ul>
+<li>Enter the following code:<pre><code class="lang-javascript">// #3 delete a contact
+it(&#39;should delete contact&#39;, function(done) {
+const superserver = supertest(app);
+superserver
+.get(&#39;/api/contacts&#39;)
+.expect(&#39;Content-type&#39;, /json/)
+.expect(200) // This is HTTP response
+.end(function(err, res) {
+    const id = res.body[0]._id;
+    superserver
+        .delete(&#39;/api/contacts/&#39;+id)
+        .expect(&#39;Content-type&#39;, /json/)
+        .expect(200) // This is HTTP response
+        .end(function(err, res) {
+          res.status.should.equal(204);
+          done();
+        });
+       }
+     );
+});</code></pre>
+</li>
+</ul>
+<h2>Challenge</h2>
+<p>Develop a test for the following route in the Contacts API</p>
+<blockquote>
+<p>PUT /api/contacts/[:id]</p>
+</blockquote>
+<p>Use the notes and online resources for support.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="03">
+        <h1>Report Generation</h1>
+<p>At the moment, the tests report back to the console. You&#39;ll now use <strong>Mochawesome</strong> to generate a unit test report that visualises the test results.</p>
+<ul>
+<li><p>Install Mochawesome to you dev dependencies.</p>
+<pre><code>npm install --save-dev mochawesome</code></pre>
+</li>
+<li><p>To output the results, update your test script in <em>package.json</em> to include mochawsome as the reporter:</p>
+<pre><code class="lang-javascript">&quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --require babel-core/register --require babel-polyfill --reporter mochawesome&quot;</code></pre>
+</li>
+<li><p>Now run the tests again. Mochawesome will generate reports in the <strong>/mochawesome-reports/</strong> folder in your project
+<img src="./img/mock.png" alt="Mockawesome report"></p>
+</li>
+</ul>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+<!--<div class="ui bottom fixed borderless right menu">
+  <div class="ui right tiny menu">
+    <div class="ui mini message segment">
+      .
+      <a href="http://creativecommons.org/licenses/by-nc/4.0/"
+         title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+         target="_blank">Creative Commons License
+      </a>
+    </div>
+  </div>
+</div>-->
+
+<script>
+  $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+</script>
+
+
+
+    <!--<footer>-->
+
+    <!--</footer>-->
+    <script>
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+
+ </html>
