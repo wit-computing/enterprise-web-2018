@@ -134,6 +134,10 @@ body
       02
     </a>
     
+    <a class="item" data-tab="03">
+      03
+    </a>
+    
     <div class="item">
       
     </div>
@@ -171,6 +175,12 @@ body
       
         <a class="item" href="../../topic04/book-1/index.html">
           api-testing-ES6
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic05/book-01/index.html">
+          Authentication-JWT
         </a>
       
     
@@ -497,6 +507,164 @@ git commit -m &quot;added routing for add,update,delete&quot;</code></pre>
 <blockquote>
 <p><strong> hint: </strong> an example comment would be <code>{&quot;comment&quot;:&quot;this is a great post!&quot;, &quot;author&quot;:&quot;fxwalsh&quot;}</code>. Refer to the API Design table for the correct parametised routing. The functions you will need from the stubAPI are addComment(postId, comment.comment, comment.author) and upvoteComment(postId, commentId).</p>
 </blockquote>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="03">
+        <h1>Hooking up the React App.</h1>
+<p>We will now connect your Hacker News React App to the API. This step requires completion of the React labs.</p>
+<h2>System Architecture</h2>
+<p>We will keep using the <strong>create-react-app</strong> framework you were using previously. <strong>create-react-app</strong> provides a mechanism for working with an API server in development. We can have the development server proxy requests intended for our API server as follows:</p>
+<p><img src="./img/architecture.png" alt="Development Architecture"></p>
+<p>The React app makes an API request to localhost:3000, the Webpack development server. The development server proxies that request to the API server. This will remove any Cross-Origin-Resource-Sharing (CORS) issues with the browser.
+For this to work we need to launch both the create-react-app dev server and the API server in order to run the app locally. We also need to get the react dev server to proxy requests to the Express API.</p>
+<ul>
+<li><p>Copy the complete hackerNews app from it&#39;s current location and put it in the root of your Express API (node-lab2). It should look like this:
+<img src="./img/files.png" alt="HackerNews folder"></p>
+</li>
+<li><p>The proxy functionality requires the version of <em>react-scripts</em> to be &gt; 0.8.5. Check this is the case by looking at the dependencies list in <em>package.json</em>.</p>
+</li>
+<li><p>The contents of the hackerNews folder should look like this:
+<img src="./img/hacker_files.png" alt="HackerNews folder"></p>
+</li>
+<li>Open a console window in the hackerNews folder and start the react app:<pre><code>npm start</code></pre>
+</li>
+</ul>
+<p>Check that the app functions as before. If it&#39;s not working then check the error messages if any.</p>
+<h2>Set up</h2>
+<h4>Nodemon filter</h4>
+<p>We want the nodemon process to ignore any changes in the hackerNews folder as these will not affect the API. In the <strong>package.json file in the lab-Node2 root folder</strong>, update the scripts property to the following:</p>
+<pre><code class="lang-json">&quot;scripts&quot;: {
+      &quot;start&quot;:  &quot;nodemon --ignore hackerNews/* --exec babel-node server.js&quot;
+    }</code></pre>
+<h4>Proxy Server</h4>
+<p>To have the React development server proxy our API requests to our Express API server, we need to add the following to the <strong>package.json file in the hackerNews folder.</strong></p>
+<pre><code class="lang-json">&quot;proxy&quot;:&quot;http://localhost:8080&quot;,</code></pre>
+<p>This should forward any request for unknown resources though to our Express app listening on port 8080.</p>
+<h4>Linter</h4>
+<p>Our current linter will not recognise JSX syntax. To remedy this for the react app, install the relevant plugin:</p>
+<p>Run npm install eslint-plugin-react
+Add &quot;plugins&quot;: [&quot;react&quot;] to your .eslintrc config file</p>
+<p>In your hackerNews folder, create a new <code>.eslintrc.json</code> file with the following contents:</p>
+<pre><code class="lang-json">{
+   &quot;env&quot;: {
+       &quot;browser&quot;: true,
+       &quot;node&quot;: true
+   },
+
+   &quot;globals&quot;: {
+       &quot;React&quot;: true
+   },
+
+   &quot;ecmaFeatures&quot;: {
+       &quot;jsx&quot;: true
+   },
+
+   &quot;plugins&quot;: [
+       &quot;react&quot;
+   ]
+}</code></pre>
+<h4>Axios</h4>
+<p>We will need to make http requests to the Express API from the React App. In the <strong>hackerNews</strong> folder, install <strong>axois</strong>.</p>
+<pre><code>npm install --save axios</code></pre>
+<p>Axios is a promise-based HTTP client for the browser and node.js. You will use it to make requests to the Express API.</p>
+<h3>Start both servers</h3>
+<p>You will need to now start both the react app server and the Express API at the same time. Open two separate command windowsin the hackerNews folder and the parent lab folder. Start the respective servers in both windows:</p>
+<pre><code>npm start</code></pre>
+<p>You should see both processes come to life. As before, they support &#39;hot code changes&#39; so you should not have to restart the processes as you moake changes.</p>
+<h2>Integrate the Express Hacker News API</h2>
+<p>Currently the Hacker News app uses a stubAPI to mimic a real API. We need to replace this.</p>
+<ul>
+<li>create a new script in the <em>hackerNews/src</em> folder called <strong>api.js</strong> and enter the following code:</li>
+</ul>
+<pre><code class="lang-javascript">import axios from &#39;axios&#39;;
+
+export const upvote = postId =&gt; {
+  return axios.post(`/api/posts/${postId}/upvote`)
+              .then(resp =&gt; resp.data);
+};
+
+export const getAll = () =&gt; {
+   return axios(&#39;/api/posts&#39;)
+              .then(resp =&gt; resp.data);
+};
+
+export const getPost = postId =&gt; {
+  return axios.get(`/api/posts/${postId}`)
+              .then(resp =&gt; resp.data);
+};
+
+export const add = (newTitle, newLink) =&gt; {
+  return axios.post(&#39;/api/posts&#39;, { title: newTitle, link: newLink })
+              .then(resp =&gt; resp.data);
+};</code></pre>
+<p>Notice how the routes match what we&#39;ve implemented in the Express API. The proxy property of the package.json provides the host information required to complete the request.</p>
+<ul>
+<li>In the <code>hackerNews/src</code>, edit <code>App.js</code> as follows: Update the import statement for the new <strong>api</strong> package.</li>
+</ul>
+<pre><code class="lang-javascript">import * as api from &#39;./api&#39;;</code></pre>
+<ul>
+<li>We are going to include posts as part of the HackerApp component state. in <em>App.js</em>, initialise the <code>state</code> and add the  <code>componentDidMount()</code> method to the HackerApp component to initialise the posts from the Express API:</li>
+</ul>
+<pre><code class="lang-javascript">class HackerApp extends React.Component {
+
+ state = {posts: [{}]};
+
+ componentDidMount () {
+         api.getAll().then(resp =&gt; {
+                this.setState({
+                  posts: resp.posts
+                });
+         }).catch(console.error);
+ };
+
+    ...
+    ...</code></pre>
+<ul>
+<li>Now replace the <code>render</code> function of the HackerApp component with the following code. This replaces the previous use of stubAPI with the new posts state retrieved from the api package.</li>
+</ul>
+<pre><code class="lang-javascript">render() {
+  const posts = _.sortBy(this.state.posts, post =&gt;
+        post.upvotes);
+  return (
+    &lt;div &gt;
+     &lt;NewsList posts={posts}
+          upvoteHandler={this.incrementUpvote} /&gt;
+     &lt;Form addHandler={this.addPost} /&gt;
+   &lt;/div&gt;
+  );
+}</code></pre>
+<p>Now have a look at the app in the browser. You should see the list of news items as before. This time, however, they are retrieved from the Express API.
+Try to add a new post. You&#39;ll notice nothing happens. Next we will update the addPost() method.</p>
+<h3>Adding a post</h3>
+<ul>
+<li>Locate the <code>addPost()</code> function in the HackerApp component. Replace it with the following:</li>
+</ul>
+<pre><code class="lang-javascript">addPost = (title, link) =&gt; {
+  api.add(title,link)
+  .then(resp =&gt; {
+                const newPost = {&quot;id&quot;:resp.id,&quot;title&quot;:title,&quot;link&quot;:link,&quot;upvotes&quot;:0, &quot;comments&quot;:[]};
+                this.setState({posts: this.state.posts.concat([newPost])});
+  })
+};</code></pre>
+<p>This function calls the Express API which returns a promise. When the promise is fulfilled, then it pushes the new post onto the posts state property. The HackerApp should react to this state and call the render function again.</p>
+<p>Check the app in the browser again. You should be able add posts to the list.</p>
+<h3>Upvoting a Post</h3>
+<p>The upvote will cause errors if you try to use it at the moment.
+Replace the <strong>incrementUpvote</strong> function in the ReactApp compnent with the following:</p>
+<pre><code class="lang-javascript">incrementUpvote = (id) =&gt; {
+  api.upvote(id).then(resp=&gt; {
+         var upvotedPost = _.find(this.state.posts, post=&gt;post.id == id);
+         upvotedPost.upvotes++;  
+         this.setState({})
+       }) ;
+};</code></pre>
+<h2>Challenge</h2>
+<p>Review your progress so far. Use the same approach to accomplish the following:</p>
+<ul>
+<li>integrate the API with the comment page.</li>
+<li>Update the contactList app to use the API developed in this lab.</li>
+</ul>
 
       </div>
      
