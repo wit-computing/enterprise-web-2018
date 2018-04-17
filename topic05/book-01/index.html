@@ -337,7 +337,9 @@ Server running at 8080
         <h1>User API</h1>
 <p>You will now create the routes for logging in (authentication) and  registering new users.</p>
 <h3>Get Users</h3>
-<p>+In <strong>/api/users/</strong> create a new file called <strong>index.js</strong>. Add the following code to the file:</p>
+<ul>
+<li>In <strong>/api/users/</strong> create a new file called <strong>index.js</strong>. Add the following code to the file:</li>
+</ul>
 <pre><code class="lang-javascript">import express from &#39;express&#39;;
 import User from &#39;./userModel&#39;;
 import asyncHandler from &#39;express-async-handler&#39;;
@@ -370,9 +372,13 @@ export default router;</code></pre>
 <li>Note how the passwords are being hashed before being saved in the database.</li>
 </ul>
 <h3>Register/Authenicate Users</h3>
-<p>We will use the POST on /api/users to both authenticate and register users. We will use the &#39;action&#39; parameter in the query string to distinguish between both actions.</p>
+<p>You will use the POST on /api/users to both authenticate and register users. The &#39;action&#39; parameter in the query string can be used to distinguish between login and signup/register. We will also need to specify a secret environment variable that will be used to create the Javascript web token.</p>
 <ul>
-<li>add the following route to /api/users/index.js</li>
+<li>Add the following entry for the secret variable into the <em>.env</em> file</li>
+</ul>
+<pre><code class="lang-bash">secret=ilikecake</code></pre>
+<ul>
+<li>Add the following route to /api/users/index.js</li>
 </ul>
 <pre><code class="lang-javascript">// Register/login a user, using async handler
 router.post(&#39;/&#39;, asyncHandler(async (req, res) =&gt; {
@@ -405,7 +411,7 @@ router.post(&#39;/&#39;, asyncHandler(async (req, res) =&gt; {
         // return the information including token as JSON
         res.status(200).json({
           success: true,
-          token: &#39;JWT &#39; + token,
+          token: &#39;BEARER &#39; + token,
         });
       } else {
         res.status(401).send({
@@ -416,7 +422,9 @@ router.post(&#39;/&#39;, asyncHandler(async (req, res) =&gt; {
     });
   };
 }));</code></pre>
-<p>The above  funtion checks for both username and password in the request. If the action parameter is set to regester, it attempts to create a new user in the database (using the mongoode user model). Otherwise, it authenticates the user and returns a JWT token signed with the users username.</p>
+<p>The above function checks for both username and password in the request. If the action parameter&#39;s value is &quot;register&quot;, it attempts to create a new user in the database (using the mongoose User model). Otherwise, it authenticates the user, creates the JWT token using the secret and signed with the users username.
+The token is then returned to the client for use in future requests.</p>
+<p>We are now ready to test the User API.</p>
 
       </div>
      
