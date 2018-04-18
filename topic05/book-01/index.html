@@ -358,6 +358,16 @@ router.get(&#39;/&#39;, async (req, res) =&gt; {
 
 export default router;</code></pre>
 <ul>
+<li>Now add the following two lines of code to the  <em>/index.js</em> in the root folder to include this router in the Express app.</li>
+</ul>
+<pre><code class="lang-Javascript">...
+import usersRouter from &#39;./api/users&#39;;
+...
+
+app.use(&#39;/api/users&#39;, usersRouter);
+
+...</code></pre>
+<ul>
 <li>Using Postman (or in a browser), make a HTTP GET request for <a href="http://localhost:8080/api/users">http://localhost:8080/api/users</a>. You should get the following:</li>
 </ul>
 <pre><code class="lang-json">[{&quot;_id&quot;:&quot;5ad4a415d868c95db7089568&quot;,
