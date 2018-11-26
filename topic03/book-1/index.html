@@ -1,202 +1,181 @@
- <!DOCTYPE html>
- <html>
-   <head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
 
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-     
-
-     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
-
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
-     <script>hljs.initHighlightingOnLoad();</script>
-
-     
-
-     <style>
-       
-
-body 
-{
+body {
   font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
 }
 
-figcaption
-{
-  margin-bottom: 20px;
+p {
+  margin: 0.5em;
 }
 
-.vertical-align
-{
-  display: flex;
-  align-items: center;
-}
-
-.ui.segment.pushable
-{
-  margin: 0;
-  padding: 1rem 0;
-  overflow: visible;
-}
-
-
-
-     </style>
-
-   </head>
-
-  <body>
-    
-
-<style>
-  
-
-code
-{
+pre code {
   font-family: "Monaco";
-  font-size: 110%;
+  font-size: 100%;
 }
 
-img
-{
-  padding:1px;
-  border:1px solid black;
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
 }
 
-h1
-{
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
   font-style:italic;
   font-size:130%;
-  border-bottom:thin solid black;
 }
 
-h2
-{
+h2 {
   font-size:110%;
-  border-bottom: thin solid black;
 }
 
-h3
-{
+h3 {
   font-size:100%;
-  border-bottom: thin solid black;
 }
 
-body
-{
-  overflow-y: scroll;
-}
 
-.pushable > .pusher
-{
-  padding-bottom: 1.5rem;
-}
 
-.ui.segment.pushable
-{
+      
+
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 1rem 0;
-  overflow: visible;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
 }
 
 
 
-</style>
+    </style>
+  </head>
 
-<div class="ui fixed top pointing inverted stackable menu labmenu">
-  <header class="header item">
-    <i id="toc" class="sitemap icon"></i>
-    <a href="../index.html">
-      Web APIs and Express 
-    </a>
-  </header>
-  <div class="right tab-menu menu">
-    
-    <a class="item" data-tab="node_lab2">
-      node_lab2
-    </a>
-    
-    <a class="item" data-tab="01">
-      01
-    </a>
-    
-    <a class="item" data-tab="02">
-      02
-    </a>
-    
-    <a class="item" data-tab="03">
-      03
-    </a>
-    
-    <div class="item">
-      
-    </div>
-  </div>
-</div>
+  <body class="uk-background-muted">
+    <div class="wrapper">
+      <div class="content">
+        <div style="height:1000px;">
+          
+  
 
-<div class="ui segment pushable">
-  <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    <br><br>
-    
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
       
-        <a class="item" href="../../topic01/book-1/index.html">
-          Lab-HTML
-        </a>
+        <a href="../index.html"> Web APIs and Express  </a>
       
-    
+    </header>
+    <div class="right tab-menu menu">
       
-        <a class="item" href="../../topic02/book-1/index.html">
-          node_lab1
-        </a>
-      
-    
-      
-        <a class="active item" href="../../topic03/book-1/index.html">
+        <a class="item" data-tab="node_lab2">
           node_lab2
         </a>
       
-    
-      
-        <a class="item" href="../../topic03/book-2/index.html">
-          node-lab3
+        <a class="item" data-tab="01">
+          01
         </a>
       
-    
-      
-        <a class="item" href="../../topic04/book-1/index.html">
-          api-testing-ES6
+        <a class="item" data-tab="02">
+          02
         </a>
       
-    
-      
-        <a class="item" href="../../topic05/book-01/index.html">
-          Authentication-JWT
+        <a class="item" data-tab="03">
+          03
         </a>
       
-    
+    </div>
   </div>
-  <div class="pusher" tabindex="-1">
-    <div class="ui basic segment" id="labchat">
-      <br>
+
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
       
-      <div  class="ui tab segment lab" data-tab="node_lab2">
-        <h2>Node and Express 2</h2>
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic01/book-1/index.html">Lab-HTML </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic02/book-1/index.html">node_lab1 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic03/book-1/index.html">node_lab2 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic03/book-2/index.html">node-lab3 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic04/book-1/index.html">api-testing-ES6 </a>
+        
+      
+        
+          <a class="item"
+             href="https://wit-computing.github.io/enterprise-web-2018//topic05/book-01/index.html">Authentication-JWT </a>
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="node_lab2">
+            <h2>Node and Express 2</h2>
 <p>This lab uses Express implement APIs for the contact and Hacker News examples.  In this lab you will use routing, parameterise URLs, and parsing Middleware.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="01">
-        <h1>Contacts API</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h1>Contacts API</h1>
 <p>We will enhance the Contacts API from last weeks lab. The following is a suggested API design for Contacts API.</p>
 <h1>API Design</h1>
 <p>We are going to create an API to manage contact data. The proposed API is as follows:</p>
@@ -301,10 +280,10 @@ contacts.splice(index, 1);
 <pre><code>git add -A
 git commit -m &quot;added routing for add,update,delete contact&quot;</code></pre>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="02">
-        <h1>Hacker News API</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h1>Hacker News API</h1>
 <p>Now we will create an API for <a href="https://news.ycombinator.com/">Hacker News</a>. Hacker News is a social news website focusing on computer science and entrepreneurship. In general, content that can be submitted is defined as &quot;anything that gratifies one&#39;s intellectual curiosity&quot;.The following is a suggested API design for Hacker News Posts</p>
 <h3>API Design</h3>
 <p><img src="./img/hacker_api.png" alt="Hacker News API"></p>
@@ -508,10 +487,10 @@ git commit -m &quot;added routing for add,update,delete&quot;</code></pre>
 <p><strong> hint: </strong> an example comment would be <code>{&quot;comment&quot;:&quot;this is a great post!&quot;, &quot;author&quot;:&quot;fxwalsh&quot;}</code>. Refer to the API Design table for the correct parametised routing. The functions you will need from the stubAPI are addComment(postId, comment.comment, comment.author) and upvoteComment(postId, commentId).</p>
 </blockquote>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="03">
-        <h1>Hooking up the React App.</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h1>Hooking up the React App.</h1>
 <p>We will now connect your Hacker News React App to the API. This step requires completion of the React labs.</p>
 <h2>System Architecture</h2>
 <p>We will keep using the <strong>create-react-app</strong> framework you were using previously. <strong>create-react-app</strong> provides a mechanism for working with an API server in development. We can have the development server proxy requests intended for our API server as follows:</p>
@@ -666,25 +645,16 @@ Replace the <strong>incrementUpvote</strong> function in the ReactApp compnent w
 <li>Update the contactList app to use the API developed in this lab.</li>
 </ul>
 
+          </div>
+        
       </div>
-     
     </div>
   </div>
-</div>
-<!--<div class="ui bottom fixed borderless right menu">
-  <div class="ui right tiny menu">
-    <div class="ui mini message segment">
-      .
-      <a href="http://creativecommons.org/licenses/by-nc/4.0/"
-         title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
-         target="_blank">Creative Commons License
-      </a>
-    </div>
-  </div>
-</div>-->
 
-<script>
-  $(document).on('keydown', function(e) {
+
+
+  <script>
+    $(document).on('keydown', function(e) {
   e = e || window.event;
   var nextTab;
   switch (e.which || e.keyCode) {
@@ -704,15 +674,7 @@ Replace the <strong>incrementUpvote</strong> function in the ReactApp compnent w
   }
 });
 
-</script>
-
-
-
-    <!--<footer>-->
-
-    <!--</footer>-->
-    <script>
-      $(document).ready(function() {
+    $(document).ready(function() {
   $('img').addClass('ui image');
 
   $('.ui.embed').embed();
@@ -745,7 +707,16 @@ Replace the <strong>incrementUpvote</strong> function in the ReactApp compnent w
     .sidebar('attach events', '#toc');
 });
 
-    </script>
+  </script>
+
+
+        </div>
+      </div>
+      <div class="footer"> <p> Powered by <a
+          href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a>
+         </p>
+      </div>
+    </div>
   </body>
 
- </html>
+</html>
